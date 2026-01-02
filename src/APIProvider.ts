@@ -1,9 +1,19 @@
-import  {type AxiosResponse} from "axios";
 import axios from "axios";
 
 const BASE_URL: string = import.meta.env.VITE_BASE_URL;
 
 export const getGames:() => Promise<{ id: number, title: string}[]> = async (): Promise<{ id: number, title: string}[]> => {
-    const response: AxiosResponse = await axios.get(`${BASE_URL}/getGames`)
-    return response.data;
-}
+    return (await axios.get(`${BASE_URL}/getGames`)).data;
+};
+
+export const getPlayers:() => Promise<{ id: number, display_name: string}[]> = async (): Promise<{ id: number, display_name: string}[]> => {
+    return (await axios.get(`${BASE_URL}/getPlayers`)).data;
+};
+
+export const getPlayerById: (id: number) => Promise<{ id: number, display_name: string}> = async (id: number): Promise<{ id: number, display_name: string}> => {
+    return (await axios.get(`${BASE_URL}/getPlayerById?id=${id}`)).data;
+};
+
+export const getPlayerByDisplayName: (display_name: string) => Promise<{ id: number, display_name: string}> = async (display_name: string): Promise<{ id: number, display_name: string}> => {
+    return (await axios.get(`${BASE_URL}/getPlayerById?display_name=${display_name}`)).data;
+};
