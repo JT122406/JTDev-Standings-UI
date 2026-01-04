@@ -10,7 +10,7 @@ import {GameResultColDefs} from "./const/Constants.ts";
 const DataGridStandings: () => React.JSX.Element = (): React.JSX.Element => {
     const [gameID, setGameID] = React.useState<number>(1);
     const [games, setGames] = useState<DropdownItem<number>[]>([]);
-    const [rows, setRows] = useState([]);
+    const [rows] = useState([]);
 
     useEffect((): void => {
         const fetchGames: () => Promise<void> = async (): Promise<void> => {
