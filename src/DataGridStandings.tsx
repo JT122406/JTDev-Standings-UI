@@ -15,7 +15,7 @@ const DataGridStandings: () => React.JSX.Element = (): React.JSX.Element => {
     useEffect((): void => {
         const fetchGames: () => Promise<void> = async (): Promise<void> => {
             const games: { id: number, title: string }[] = await getGames();
-            setGames(games.map((game: { id: number, title: string }) => ({value: game.id, label: game.title})));
+            setGames(games.map((game: { id: number, title: string }): {value: number, label: string} => ({value: game.id, label: game.title})));
         }
         void fetchGames();
     }, [])
@@ -28,7 +28,7 @@ const DataGridStandings: () => React.JSX.Element = (): React.JSX.Element => {
     return (
         <Box sx={{ height: 400, width: '100%' }} display={"flex"} flexDirection={"column"} justifyContent={"center"}>
             <Dropdown<number> items={games} value={gameID} onChange={value => setGameID(value.target.value)}/>
-            <DataGrid columns={GameResultColDefs} rows={rows} disableRowSelectionOnClick/>
+            <DataGrid columns={GameResultColDefs} rows={rows} columnVisibilityModel={{id: false}} disableRowSelectionOnClick/>
         </Box>
     );
 };
