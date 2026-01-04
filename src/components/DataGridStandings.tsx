@@ -28,7 +28,15 @@ const DataGridStandings: () => React.JSX.Element = (): React.JSX.Element => {
     return (
         <Box sx={{ height: 400, width: '100%' }} display={"flex"} flexDirection={"column"} justifyContent={"center"}>
             <Dropdown<number> items={games} value={gameID} onChange={value => setGameID(value.target.value)}/>
-            <DataGrid columns={GameResultColDefs} rows={rows} columnVisibilityModel={{id: false}} disableRowSelectionOnClick/>
+            <DataGrid
+                columns={GameResultColDefs}
+                rows={rows}
+                columnVisibilityModel={{id: false}}
+                disableRowSelectionOnClick
+                localeText={{
+                    noRowsLabel: 'No Available Data For Selected Game',
+                }}
+            />
         </Box>
     );
 };
