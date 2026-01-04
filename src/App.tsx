@@ -1,7 +1,7 @@
 import './App.css'
 import * as React from "react";
 import {Box, Paper, Typography} from "@mui/material";
-import DataGridStandings from "./DataGridStandings.tsx";
+import DataGridStandings from "./components/DataGridStandings.tsx";
 
 function App(): React.JSX.Element {
 

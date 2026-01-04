@@ -3,8 +3,8 @@ import * as React from "react";
 import {Box} from "@mui/material";
 import {Dropdown, type DropdownItem} from "@jt122406/mui-dropdown";
 import {useEffect, useState} from "react";
-import {getGames} from "./APIProvider.ts";
-import {GameResultColDefs} from "./const/Constants.ts";
+import {getGames} from "../APIProvider.ts";
+import {GameResultColDefs} from "../const/Constants.ts";
 
 
 const DataGridStandings: () => React.JSX.Element = (): React.JSX.Element => {
