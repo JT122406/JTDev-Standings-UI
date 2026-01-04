@@ -34,7 +34,7 @@ const DataGridStandings: () => React.JSX.Element = (): React.JSX.Element => {
                 columnVisibilityModel={{id: false}}
                 disableRowSelectionOnClick
                 localeText={{
-                    noRowsLabel: 'No Available Data For Selected Game',
+                    noRowsLabel: 'No Available Data For: ' + games.find((game: DropdownItem<number>): boolean => game.value === gameID)?.label,
                 }}
             />
         </Box>

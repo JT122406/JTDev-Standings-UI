@@ -3,7 +3,11 @@ import axios from "axios";
 const BASE_URL: string = import.meta.env.VITE_BASE_URL;
 
 export const getGames:() => Promise<{ id: number, title: string}[]> = async (): Promise<{ id: number, title: string}[]> => {
-    return (await axios.get(`${BASE_URL}/getGames`)).data;
+    return (await axios.get(`${BASE_URL}/games/getGames`)).data;
+};
+
+export const getGameById:(id: number) => Promise<{ id: number, title: string}[]> = async (id: number): Promise<{ id: number, title: string}[]> => {
+    return (await axios.get(`${BASE_URL}/games/${id}`)).data;
 };
 
 export const getPlayers:() => Promise<{ id: number, display_name: string}[]> = async (): Promise<{ id: number, display_name: string}[]> => {
