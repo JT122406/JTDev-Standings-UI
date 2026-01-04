@@ -1,6 +1,6 @@
 import {DataGrid} from "@mui/x-data-grid";
 import * as React from "react";
-import {Box} from "@mui/material";
+import {Box, Typography} from "@mui/material";
 import {Dropdown, type DropdownItem} from "@jt122406/mui-dropdown";
 import {useEffect, useState} from "react";
 import {getGames} from "../APIProvider.ts";
@@ -27,16 +27,22 @@ const DataGridStandings: () => React.JSX.Element = (): React.JSX.Element => {
 
     return (
         <Box sx={{ height: 400, width: '100%' }} display={"flex"} flexDirection={"column"} justifyContent={"center"}>
-            <Dropdown<number> items={games} value={gameID} onChange={value => setGameID(value.target.value)}/>
-            <DataGrid
-                columns={GameResultColDefs}
-                rows={rows}
-                columnVisibilityModel={{id: false}}
-                disableRowSelectionOnClick
-                localeText={{
-                    noRowsLabel: 'No Available Data For: ' + games.find((game: DropdownItem<number>): boolean => game.value === gameID)?.label,
-                }}
-            />
+            {games.length !== 0 ? (
+                <>
+                    <Dropdown<number> items={games} value={gameID} onChange={value => setGameID(value.target.value)}/>
+                    <DataGrid
+                        columns={GameResultColDefs}
+                        rows={rows}
+                        columnVisibilityModel={{id: false}}
+                        disableRowSelectionOnClick
+                        localeText={{
+                            noRowsLabel: 'No Available Data For: ' + games.find((game: DropdownItem<number>): boolean => game.value === gameID)?.label,
+                        }}
+                    />
+                </>
+            ) : (
+                <Typography>Unable to retrieve game stats</Typography>
+            )}
         </Box>
     );
 };
