@@ -21,3 +21,7 @@ export const getPlayerById: (id: number) => Promise<{ id: number, display_name: 
 export const getPlayerByDisplayName: (display_name: string) => Promise<{ id: number, display_name: string}> = async (display_name: string): Promise<{ id: number, display_name: string}> => {
     return (await axios.get(`${BASE_URL}/getPlayerById?display_name=${display_name}`)).data;
 };
+
+export const addPlayer: (display_name: string) => Promise<{ id: number, display_name: string}> = async (display_name: string): Promise<{ id: number, display_name: string}> => {
+    return (await axios.post(`${BASE_URL}/players/player`, { display_name })).data;
+};

@@ -25,26 +25,51 @@ const DataGridStandings: () => React.JSX.Element = (): React.JSX.Element => {
     }, [gameID]);
 
 
-    return (
-        <Box sx={{ height: 400, width: '100%' }} display={"flex"} flexDirection={"column"} justifyContent={"center"}>
-            {games.length !== 0 ? (
-                <>
-                    <Dropdown<number> items={games} value={gameID} onChange={value => setGameID(value.target.value)}/>
-                    <DataGrid
-                        columns={GameResultColDefs}
-                        rows={rows}
-                        columnVisibilityModel={{id: false}}
-                        disableRowSelectionOnClick
-                        localeText={{
-                            noRowsLabel: 'No Available Data For: ' + games.find((game: DropdownItem<number>): boolean => game.value === gameID)?.label,
-                        }}
-                    />
-                </>
-            ) : (
-                <Typography>Unable to retrieve game stats</Typography>
-            )}
+    return (<>
+        <Box sx={{ mb: 2 }}>
+            <Typography variant="h6" fontWeight={600}>
+                Standings
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+                Select a game to view current rankings
+            </Typography>
         </Box>
-    );
+
+        <Box sx={{ width: '100%' }}>
+    <Box sx={{ mb: 2 }}>
+        <Dropdown<number>
+            items={games}
+            value={gameID}
+            onChange={value => setGameID(value.target.value)}
+            fullWidth
+        />
+    </Box>
+
+            <DataGrid
+                rows={rows}
+                columns={GameResultColDefs}
+                columnVisibilityModel={{ id: false }}
+                disableRowSelectionOnClick
+                density="comfortable"
+                sx={{
+                    border: '1px solid',
+                    borderColor: 'divider',
+                    borderRadius: 1,
+                    '& .MuiDataGrid-columnHeaders': {
+                        backgroundColor: 'grey.100',
+                        fontWeight: 600,
+                    },
+                }}
+                localeText={{
+                    noRowsLabel:
+                        'No Available Data For: ' +
+                        games.find(game => game.value === gameID)?.label,
+                }}
+            />
+        </Box>
+
+        </>
+);
 };
 
 export default DataGridStandings;
